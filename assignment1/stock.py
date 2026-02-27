@@ -61,8 +61,8 @@ class Stock:
 
     def plot_return_dist(self):
         self.data['Instant_Return'].dropna().hist(bins=50)
-        plt.xlabel("Date") 
-        plt.ylabel("Price (USD)")
+        plt.xlabel("Return") 
+        plt.ylabel("Frequency")
         plt.title(f"{self.symbol} Returns")
         plt.axvline(0, color='red')
         plt.show()
@@ -85,8 +85,6 @@ def main():
     aapl.plot_performance()
     aapl.add_technical_indicators()
     aapl.plot_return_dist()
-    pass
-
-
+    
 if __name__ == "__main__":
     main()
