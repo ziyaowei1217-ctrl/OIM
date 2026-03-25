@@ -1,6 +1,6 @@
 from selenium import webdriver
 
-browser = webdriver.Firefox()
+browser = webdriver.Edge()
 
 browser.get('http://localhost:8000')
 
