@@ -1,1 +1,28 @@
-.venv
+# --- Python 虚拟环境 ---
+venv/
+.venv/
+env/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+ENV/
+env/
+
+# --- 机器学习模型 (大文件或生成的二进制文件) ---
+# 建议不要追踪模型文件，因为它们通常很大且经常变动
+*.joblib
+*.pkl
+*.pth
+*.onnx
+
+# --- 操作系统与编辑器 ---
+.DS_Store
+.vscode/
+.idea/
+.env
+
+# --- 实验数据 (如果有的话) ---
+*.csv
+*.json
+!api.py  # 排除规则：不要忽略 api.py
