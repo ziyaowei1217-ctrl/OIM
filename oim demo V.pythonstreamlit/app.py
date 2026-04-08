@@ -38,7 +38,7 @@ def to_mla_title_case(s: str) -> str:
             res.append(lower_word)
     return "".join(res)
 
-def to_sentence_case(s: str) -> str:
+def to_apa_sentence_case(s: str) -> str:
     if not s: return ""
     if s.startswith('['): return s
     s = s.lower()
@@ -125,7 +125,7 @@ def get_reference_entry(fmt: str, authors: list, year: str, source: str, publish
             ref_author = f"{authors[0]['last']}, {authors[0]['first']}, et al."
 
     title_case_source = to_mla_title_case(source)
-    sentence_case_source = to_sentence_case(source)
+    sentence_case_source = to_apa_sentence_case(source)
 
     if fmt == 'APA':
         ans = f"{ref_author} ({year}). *{sentence_case_source}*. {publisher}."
