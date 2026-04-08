@@ -37,6 +37,8 @@ app.post('/api/match', upload.array('files'), async (req, res) => {
       const data = await pdfParse(file.buffer);
       parsedDocuments.push({
         filename: file.originalname,
+        author: data.info?.Author || 'Unknown',
+        title: data.info?.Title || 'Unknown',
         content: data.text,
       });
     }
@@ -50,7 +52,7 @@ Outline:
 ${outline}
 
 Sources:
-${parsedDocuments.map(doc => `--- Source: ${doc.filename} ---\n${doc.content}\n`).join('\n')}
+${parsedDocuments.map(doc => `--- Source: ${doc.filename} ---\nMetadata Author: ${doc.author}\nMetadata Title: ${doc.title}\n\n${doc.content}\n`).join('\n')}
 
 Please return ONLY a valid JSON array matching the structure below. Do not wrap in markdown \`\`\`json.
 [
@@ -60,7 +62,10 @@ Please return ONLY a valid JSON array matching the structure below. Do not wrap 
     "quotes": [
       {
         "text": "The exact quote text from the source",
-        "source": "Filename of the source",
+        "source": "Formal academic title of the document (extract from the text, DO NOT just use the raw filename)",
+        "author": "The author's full name (extract from the document text, usually on the first pages)",
+        "year": "Publication year (extract from the text if available, otherwise 'Unknown')",
+        "publisher": "Publisher or Journal name (extract from the text if available, otherwise 'Unknown')",
         "page": "Approximate page number or 'N/A'"
       }
     ]
